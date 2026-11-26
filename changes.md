@@ -1,3 +1,6 @@
+## Changes in 1.4
+* Added support for Moodle 5.3+
+
 ## Changes in 1.3
 * Added support for Moodle 5.2+
 

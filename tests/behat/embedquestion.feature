@@ -82,3 +82,19 @@ Feature: Embed question in the Tiny editor
     And I click on the "Insert > Embedded question" menu item for the "Description" TinyMCE editor
     And the field "Question category" matches value "Test questions 2 [embed2] (1)"
     And the field "id_questionidnumber" matches value "First question [test2]"
+
+  @javascript
+  Scenario: Switch bank dialogue lists banks in the current course and recently viewed banks
+    Given "teacher" has recently viewed the "qbank2" "qbank" question bank
+    And I am on the "Course 1" course page logged in as teacher
+    And I turn editing mode on
+    And I add a page activity to course "Course 1" section "1"
+    # Just make the Tiny dropdown have enough space to show the "Embed question" menu item.
+    And I change window size to "large"
+    And I set the field "Name" to "Test page 01"
+    And I set the field "Description" to "Test page description"
+    And I set the field "content" to "Test page content"
+    And I click on the "Insert > Embedded question" menu item for the "Description" TinyMCE editor
+    When I click on "Switch bank" "button" in the "Embedded question" "dialogue"
+    Then I should see "Qbank 1" in the ".course-shared-banks" "css_element"
+    And I should see "C2 - Qbank 2" in the ".recently-viewed-banks" "css_element"
